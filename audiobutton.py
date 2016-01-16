@@ -1,15 +1,18 @@
 #!/usr/bin/env python
-from gpiozero import Button, Buzzer
+from gpiozero import Button, LED
 from signal import pause
 from time import sleep
 import os
+
+green = LED(47)
+green.off()
 
 # A hack to get around a known bug
 # https://github.com/RPi-Distro/python-gpiozero/issues/50
 button1 = None
 while not button1:
     try:
-        button1 = Button(16, bounce_time=0.2)
+        button1 = Button(26, bounce_time=0.2)
     except RuntimeError:
         pass
 
@@ -17,11 +20,19 @@ num = 0
 playloop = 0
 last = False
 
+def blinkled():
+    green.off()
+    if num != 99:
+        green.blink(on_time=.2, off_time=.3, n=(num))
+    elif num == 99:
+        green.blink(on_time=.1, off_time=.1, n=30)
+
 def audioplay():
     print("playing song %s" % num)
     os.system("pkill play")
     sleep(.2)
     os.system("/home/pi/tones.sh %s" % num)
+    blinkled()
 
 while True:
     sleep(.01)
