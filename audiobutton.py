@@ -15,13 +15,8 @@ num = -1
 prnt = 0
 last = False
 
-input_value = False
-
-def released():
-    input_value = True
-
-def printer():
-    print("playing song %s" % num)
+def audioplay():
+    print("playing sequence %s" % num)
     os.system("pkill play")
     sleep(.2)
     os.system("/home/pi/tones.sh %s" % num)
@@ -48,7 +43,7 @@ while True:
             if (num >= 11):
                 num = 0
             if (num <= 9):
-                printer()
+                audioplay()
             if (num >= 10):
                 os.system("pkill play")
             prnt = 0
