@@ -1,7 +1,7 @@
 # audiobutton
 Use a single GPIO button to cycle through generated audio.
 
-Uses [gpiozero](http://pythonhosted.org/gpiozero/) and [SoX](http://sox.sourceforge.net/)
+Uses [gpiozero](https://github.com/RPi-Distro/python-gpiozero/) and [SoX](http://sox.sourceforge.net/)
 
 ```
 sudo apt-get -y install python-gpiozero sox libsox-fmt-all
